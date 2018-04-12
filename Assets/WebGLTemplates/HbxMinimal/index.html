@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | %UNITY_WEB_NAME%</title>
+    <style>
+    /* a style sheet needs to be present for cursor hiding and custom cursors to work. */
+    canvas { width: %UNITY_WIDTH%px; height: %UNITY_HEIGHT%px; }
+    </style>
+  </head>
+  <body>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="%UNITY_HEIGHT%px" width="%UNITY_WIDTH%px"></canvas>
+    <script type="text/javascript">
+      var windowedWidth = %UNITY_WIDTH%;
+      var windowedHeight = %UNITY_HEIGHT%;
+      var canvas = document.getElementById("canvas");
+
+      document.addEventListener("fullscreenchange", onFullScreenChange, false);
+      document.addEventListener("webkitfullscreenchange", onFullScreenChange, false);
+      document.addEventListener("mozfullscreenchange", onFullScreenChange, false);
+
+      function onFullScreenChange() {
+        var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+        if(fullscreenElement != null)
+        {
+          canvas.style.width = screen.width + "px";
+          canvas.style.height = screen.height + "px";
+        } else {
+          canvas.style.width = windowedWidth + "px";
+          canvas.style.height = windowedHeight + "px";
+        }
+      };
+    </script>
+    %UNITY_WEBGL_LOADER_GLUE%
+  </body>
+</html>

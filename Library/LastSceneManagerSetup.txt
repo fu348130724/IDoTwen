@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Demigiant/DOTweenPro Examples/DOTweenPath.unity
+  isLoaded: 1
+  isActive: 1
